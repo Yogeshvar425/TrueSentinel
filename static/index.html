@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sentiment Pulse</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>Sentiment<span class="gradient-text">Pulse</span></h1>
+            <p>Compare Logistic Regression and SVM on live YouTube comments.</p>
+        </header>
+
+        <section class="search-box glass-panel">
+            <input type="text" id="youtube_url" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" autocomplete="off">
+            <button id="analyze_btn">
+                <span class="btn-text">Analyze Pulse</span>
+                <div class="spinner default-hide" id="loading_spinner"></div>
+            </button>
+        </section>
+        
+        <div id="status_text" class="status-msg default-hide">Running Vectorization & Logistic Regression Prediction...</div>
+
+        <section id="results_dashboard" class="dashboard default-hide">
+            <div class="grid-top">
+                <!-- Topics Card -->
+                <div class="card glass-panel flex-card topics-card">
+                    <h2>🎯 Key Topics Detected</h2>
+                    <ul id="topics_list" class="topics-list"></ul>
+                </div>
+                
+                <!-- Video Meta Card -->
+                <div class="card glass-panel flex-card meta-card">
+                    <h2>📊 Stats</h2>
+                    <div class="stat">
+                        <span class="stat-label">Comments Analyzed</span>
+                        <span class="stat-value" id="stat_analyzed">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Spam Blocked</span>
+                        <span class="stat-value" id="stat_spam">0</span>
+                    </div>
+                </div>
+
+                <!-- Model Metrics Card -->
+                <div class="card glass-panel flex-card meta-card" style="grid-column: span 2;">
+                    <h2>📈 Training Metrics Comparison</h2>
+                    <div class="stat">
+                        <span class="stat-label" style="color:var(--text-primary)">Logistic Regression Test Accuracy</span>
+                        <span class="stat-value" id="log_accuracy">--</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label" style="color:var(--text-primary)">SVM Test Accuracy</span>
+                        <span class="stat-value" id="svm_accuracy">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emotions Chart -->
+            <div class="card glass-panel flex-card chart-card">
+                <h2>🎭 True Emotion Breakdown</h2>
+                <div id="emotion_bars" class="bars-container">
+                    <!-- Dynamic Bars Injected Here -->
+                </div>
+            </div>
+
+            <!-- Raw Data Logs -->
+            <div class="card glass-panel flex-card raw-data-card">
+                <h2>📋 Raw AI Classifications</h2>
+                <div class="table-container">
+                    <table id="comments_table">
+                        <thead>
+                            <tr>
+                                <th>Emotion</th>
+                                <th>Score</th>
+                                <th>Raw Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comments_tbody">
+                            <!-- Injected Here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

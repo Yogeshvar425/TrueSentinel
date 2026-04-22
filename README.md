@@ -1,10 +1,18 @@
-# YouTube Comment Sentiment Analyzer MVP
+# TrueSentinel: Full-Stack Machine Learning Pipeline
 
-A simple Python application that fetches comments from a given YouTube video and analyzes their overall sentiment using VADER sentiment analysis. It also extracts the most commonly used words overall.
+A sophisticated, full-stack Machine Learning application built entirely from scratch. TrueSentinel bridges the gap between raw web data extraction and complex Natural Language Processing, acting as a complete pipeline from Data Harvesting to Model Training and Web Deployment.
 
-## Setup
+## 🚀 Features
 
-1. Ensure you have Python installed.
+- **From-Scratch ML Pipeline**: Instead of relying on pre-trained black-box APIs, this project fetches, labels, feature-engineers, and trains its own Machine Learning models (Logistic Regression & SVM).
+- **Automated Data Harvesting**: Connects natively via the YouTube Data API to fetch live, real-world comments across diverse videos.
+- **Smart Lexicon Labeling**: Utilizes a robust NLP lexical ruleset (including Catching Double-Negatives like "not bad") to automatically establish ground-truth labels.
+- **Model Training & Comparison**: Vectorizes text using TF-IDF (supporting Bigrams) and strictly trains both Linear Regression and Support Vector Machines, factoring in Class Weight Balancing for robust models that can handle skewed datasets.
+- **Live Interactive Dashboard**: An aesthetically pleasing, glassmorphism-styled dashboard built on FastAPI that feeds user inputs through the custom pickled `.pkl` models for real-time sentiment analysis!
+
+## ⚙️ Setup
+
+1. Ensure you have Python 3.8+ installed.
 2. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
@@ -14,17 +22,27 @@ A simple Python application that fetches comments from a given YouTube video and
    YOUTUBE_API_KEY=your_api_key_here
    ```
 
-## Usage
+## 🧠 Training the Model
 
-Run the program from your terminal:
+Before starting the server, you must train your own models:
 ```bash
-python main.py
+python train.py
 ```
+This script will locally harvest YouTube data, generate `custom_training_data.csv`, train the models, report Accuracy & F1-Scores, and export `logistic_model.pkl` and `tfidf_vectorizer.pkl`.
 
-When prompted, paste the URL of the YouTube video you want to analyze. The application will fetch up to 100 top-level comments and generate a sentiment breakdown (Positive, Neutral, Negative) along with the top 5 most frequently associated words.
+## 🌐 Launching the Dashboard
 
-## Dependencies
+Once trained, spin up the backend API and User Interface:
+```bash
+python server.py
+```
+Then navigate your browser to: **http://localhost:8000**
 
-- `google-api-python-client`: For fetching comments via the YouTube API.
-- `vaderSentiment`: For generating sentiment scores and analyzing text.
-- `python-dotenv`: For managing the environment variables (like API keys) securely.
+Paste any YouTube URL and watch your custom Logistic Regression model categorize the live sentiment and extract core topics dynamically!
+
+## 💻 Core Stack
+
+- **Machine Learning**: Scikit-Learn (Logistic Regression, SVM, TF-IDF Vectorization).
+- **Backend Architecture**: FastAPI / Uvicorn.
+- **Data Engineering**: Pandas, Google-API-Python-Client.
+- **Frontend Design**: Vanilla JS & CSS (Glassmorphism UI).
