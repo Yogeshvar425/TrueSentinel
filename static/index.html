@@ -3,96 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Sentiment Pulse</title>
+    <title>TrueSentinel — Real-Time YouTube Sentiment Intelligence</title>
+    <meta name="description" content="TrueSentinel: A full-stack ML pipeline that harvests, preprocesses, and classifies YouTube comment sentiment in real-time using custom-trained Logistic Regression and SVM models.">
+    <meta property="og:title" content="TrueSentinel — Sentiment Intelligence">
+    <meta property="og:description" content="Real-time YouTube comment sentiment analysis powered by custom ML models trained from scratch.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-glow">
+    <!-- Animated Background -->
+    <div class="bg-canvas" id="bg-canvas">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="grid-overlay"></div>
     </div>
 
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
     <main class="container">
-        <header>
-            <h1>Sentiment<span class="gradient-text">Pulse</span></h1>
-            <p>Compare Logistic Regression and SVM on live YouTube comments.</p>
+        <!-- Hero Section -->
+        <header class="hero" id="hero">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>ML Pipeline v2.0</span>
+            </div>
+            <h1 class="hero-title">
+                True<span class="gradient-text">Sentinel</span>
+            </h1>
+            <p class="hero-subtitle">
+                Real-time YouTube comment sentiment intelligence — powered by custom-trained
+                <strong>Logistic Regression</strong> and <strong>SVM</strong> models built from scratch.
+            </p>
+
+            <!-- Impact Stats Bar -->
+            <div class="impact-bar glass-panel" id="impact-bar">
+                <div class="impact-stat">
+                    <span class="impact-number" id="impact-analyses">0</span>
+                    <span class="impact-label">Analyses Run</span>
+                </div>
+                <div class="impact-divider"></div>
+                <div class="impact-stat">
+                    <span class="impact-number" id="impact-comments">0</span>
+                    <span class="impact-label">Comments Processed</span>
+                </div>
+                <div class="impact-divider"></div>
+                <div class="impact-stat">
+                    <span class="impact-number" id="impact-spam">0</span>
+                    <span class="impact-label">Spam Blocked</span>
+                </div>
+            </div>
         </header>
 
-        <section class="search-box glass-panel">
-            <input type="text" id="youtube_url" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" autocomplete="off">
-            <button id="analyze_btn">
-                <span class="btn-text">Analyze Pulse</span>
-                <div class="spinner default-hide" id="loading_spinner"></div>
-            </button>
+        <!-- Search Section -->
+        <section class="search-section" id="search-section">
+            <div class="search-box glass-panel">
+                <div class="search-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg>
+                </div>
+                <input
+                    type="text"
+                    id="youtube-url"
+                    placeholder="Paste a YouTube URL and press Enter..."
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <button id="analyze-btn" class="analyze-btn">
+                    <span class="btn-text" id="btn-text">Analyze</span>
+                    <div class="btn-spinner" id="btn-spinner"></div>
+                </button>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="progress-steps" id="progress-steps">
+                <div class="step" id="step-fetch">
+                    <div class="step-indicator"></div>
+                    <span>Fetching Comments</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step" id="step-filter">
+                    <div class="step-indicator"></div>
+                    <span>Filtering Spam</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step" id="step-vectorize">
+                    <div class="step-indicator"></div>
+                    <span>TF-IDF Vectorization</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step" id="step-predict">
+                    <div class="step-indicator"></div>
+                    <span>Model Inference</span>
+                </div>
+            </div>
         </section>
-        
-        <div id="status_text" class="status-msg default-hide">Running Vectorization & Logistic Regression Prediction...</div>
 
-        <section id="results_dashboard" class="dashboard default-hide">
-            <div class="grid-top">
-                <!-- Topics Card -->
-                <div class="card glass-panel flex-card topics-card">
-                    <h2>🎯 Key Topics Detected</h2>
-                    <ul id="topics_list" class="topics-list"></ul>
-                </div>
-                
-                <!-- Video Meta Card -->
-                <div class="card glass-panel flex-card meta-card">
-                    <h2>📊 Stats</h2>
-                    <div class="stat">
-                        <span class="stat-label">Comments Analyzed</span>
-                        <span class="stat-value" id="stat_analyzed">0</span>
+        <!-- Results Dashboard -->
+        <section class="dashboard" id="dashboard">
+
+            <!-- Row 1: Sentiment Donut + Quick Stats -->
+            <div class="dash-row dash-row-hero">
+                <div class="card glass-panel card-chart" id="card-chart">
+                    <div class="card-header">
+                        <h2>Sentiment Distribution</h2>
+                        <span class="card-badge" id="badge-model">Logistic Regression</span>
                     </div>
-                    <div class="stat">
-                        <span class="stat-label">Spam Blocked</span>
-                        <span class="stat-value" id="stat_spam">0</span>
+                    <div class="donut-wrapper">
+                        <canvas id="donut-canvas" width="220" height="220"></canvas>
+                        <div class="donut-center">
+                            <span class="donut-value" id="donut-dominant-pct">—</span>
+                            <span class="donut-label" id="donut-dominant-label">dominant</span>
+                        </div>
                     </div>
+                    <div class="donut-legend" id="donut-legend"></div>
                 </div>
 
-                <!-- Model Metrics Card -->
-                <div class="card glass-panel flex-card meta-card" style="grid-column: span 2;">
-                    <h2>📈 Training Metrics Comparison</h2>
-                    <div class="stat">
-                        <span class="stat-label" style="color:var(--text-primary)">Logistic Regression Test Accuracy</span>
-                        <span class="stat-value" id="log_accuracy">--</span>
+                <div class="card-stack">
+                    <div class="card glass-panel card-stat" id="card-analyzed">
+                        <div class="stat-icon stat-icon-blue">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value counter" data-target="0" id="stat-analyzed">0</span>
+                            <span class="stat-label">Comments Analyzed</span>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <span class="stat-label" style="color:var(--text-primary)">SVM Test Accuracy</span>
-                        <span class="stat-value" id="svm_accuracy">--</span>
+                    <div class="card glass-panel card-stat" id="card-spam">
+                        <div class="stat-icon stat-icon-red">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M3.6 9h16.8L12 3.6 3.6 9z"></path><path d="M3.6 9 12 20.4 20.4 9"></path></svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value counter" data-target="0" id="stat-spam">0</span>
+                            <span class="stat-label">Spam Blocked</span>
+                        </div>
+                    </div>
+                    <div class="card glass-panel card-stat" id="card-time">
+                        <div class="stat-icon stat-icon-green">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value" id="stat-inference-time">—</span>
+                            <span class="stat-label">Inference Time</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Emotions Chart -->
-            <div class="card glass-panel flex-card chart-card">
-                <h2>🎭 True Emotion Breakdown</h2>
-                <div id="emotion_bars" class="bars-container">
-                    <!-- Dynamic Bars Injected Here -->
+            <!-- Row 2: Model Metrics -->
+            <div class="card glass-panel card-metrics" id="card-metrics">
+                <div class="card-header">
+                    <h2>Training Metrics</h2>
+                    <span class="card-badge card-badge-secondary">5-Fold Cross-Validated</span>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-block">
+                        <h3 class="metric-model-name">Logistic Regression</h3>
+                        <div class="metric-row">
+                            <div class="metric-item">
+                                <span class="metric-value" id="lr-accuracy">—</span>
+                                <span class="metric-label">Accuracy</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value" id="lr-f1">—</span>
+                                <span class="metric-label">F1 Score</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value" id="lr-precision">—</span>
+                                <span class="metric-label">Precision</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value" id="lr-recall">—</span>
+                                <span class="metric-label">Recall</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-block">
+                        <h3 class="metric-model-name">Support Vector Machine</h3>
+                        <div class="metric-row">
+                            <div class="metric-item">
+                                <span class="metric-value" id="svm-accuracy">—</span>
+                                <span class="metric-label">Accuracy</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value" id="svm-f1">—</span>
+                                <span class="metric-label">F1 Score</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value" id="svm-precision">—</span>
+                                <span class="metric-label">Precision</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-value" id="svm-recall">—</span>
+                                <span class="metric-label">Recall</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metrics-footer" id="metrics-footer">
+                    <!-- Populated by JS -->
                 </div>
             </div>
 
-            <!-- Raw Data Logs -->
-            <div class="card glass-panel flex-card raw-data-card">
-                <h2>📋 Raw AI Classifications</h2>
-                <div class="table-container">
-                    <table id="comments_table">
-                        <thead>
-                            <tr>
-                                <th>Emotion</th>
-                                <th>Score</th>
-                                <th>Raw Comment</th>
-                            </tr>
-                        </thead>
-                        <tbody id="comments_tbody">
-                            <!-- Injected Here -->
-                        </tbody>
-                    </table>
+            <!-- Row 3: Topics -->
+            <div class="card glass-panel card-topics" id="card-topics">
+                <div class="card-header">
+                    <h2>Key Topics Detected</h2>
+                    <span class="card-badge card-badge-secondary">NMF Topic Modeling</span>
+                </div>
+                <div class="topics-grid" id="topics-grid">
+                    <!-- Populated by JS -->
                 </div>
             </div>
 
+            <!-- Row 4: Comment Feed -->
+            <div class="card glass-panel card-comments" id="card-comments">
+                <div class="card-header">
+                    <h2>Comment Classifications</h2>
+                    <div class="comment-filters" id="comment-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="positive">👍 Positive</button>
+                        <button class="filter-btn" data-filter="negative">👎 Negative</button>
+                    </div>
+                </div>
+                <div class="comments-feed" id="comments-feed">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
         </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built from scratch with <span class="gradient-text">Scikit-Learn</span>, <span class="gradient-text">FastAPI</span>, and vanilla JS.</p>
+            <p class="footer-sub">TrueSentinel v2.0 — No pre-trained APIs. Custom models only.</p>
+        </footer>
     </main>
+
     <script src="app.js"></script>
 </body>
 </html>
