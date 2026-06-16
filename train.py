@@ -1,5 +1,5 @@
 """
-TrueSentinel — Model Training Pipeline
+TrueSentiment — Model Training Pipeline
 =======================================
 Harvests live YouTube comments, labels via lexicon rules, engineers TF-IDF features,
 trains Logistic Regression + SVM, performs Stratified K-Fold cross-validation,
@@ -31,7 +31,7 @@ logging.basicConfig(
     format="%(asctime)s │ %(levelname)-7s │ %(message)s",
     datefmt="%H:%M:%S"
 )
-log = logging.getLogger("TrueSentinel.Train")
+log = logging.getLogger("TrueSentiment.Train")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, "models")
@@ -106,7 +106,7 @@ def label_comment(comment: str) -> int | None:
 # ═══════════════════════════════════════════════════════════════
 def main():
     log.info("═" * 60)
-    log.info("  TrueSentinel — Training Pipeline v2.0")
+    log.info("  TrueSentiment — Training Pipeline v2.0")
     log.info("═" * 60)
 
     if not YOUTUBE_API_KEY:

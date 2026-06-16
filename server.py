@@ -1,5 +1,5 @@
 """
-TrueSentinel — API Server
+TrueSentiment — API Server
 =========================
 FastAPI backend that loads custom-trained models and serves real-time
 sentiment analysis with cumulative impact metrics tracking.
@@ -29,7 +29,7 @@ logging.basicConfig(
     format="%(asctime)s │ %(levelname)-7s │ %(message)s",
     datefmt="%H:%M:%S"
 )
-log = logging.getLogger("TrueSentinel.Server")
+log = logging.getLogger("TrueSentiment.Server")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, "models")
@@ -49,7 +49,7 @@ def preprocess_text(text: str) -> str:
 
 # ─── App + Lifespan ─────────────────────────────────────────────
 app = FastAPI(
-    title="TrueSentinel API",
+    title="TrueSentiment API",
     description="Real-time YouTube comment sentiment analysis with custom ML models",
     version="2.0.0"
 )
@@ -311,5 +311,5 @@ app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
 # ─── Entrypoint ─────────────────────────────────────────────────
 if __name__ == "__main__":
     import uvicorn
-    log.info("Starting TrueSentinel server on http://localhost:8000")
+    log.info("Starting TrueSentiment server on http://localhost:8000")
     uvicorn.run(app, host="0.0.0.0", port=8000)

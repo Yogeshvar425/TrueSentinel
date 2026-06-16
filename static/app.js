@@ -1,5 +1,5 @@
 /**
- * TrueSentinel — Frontend Application v2.0
+ * TrueSentiment — Frontend Application v2.0
  * ==========================================
  * Pure JS: donut chart, animated counters, progress state machine,
  * toast notifications, comment filtering, and impact stats.

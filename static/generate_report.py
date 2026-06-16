@@ -21,7 +21,7 @@ def create_report():
     for _ in range(5):
         doc.add_paragraph()
     
-    title = doc.add_paragraph('TrueSentinel: Full-Stack Machine Learning Pipeline')
+    title = doc.add_paragraph('TrueSentiment: Full-Stack Machine Learning Pipeline')
     title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     for run in title.runs:
         run.font.size = Pt(28)
@@ -47,7 +47,7 @@ def create_report():
     # --- Abstract ---
     doc.add_heading('Abstract', level=1)
     doc.add_paragraph(
-        "TrueSentinel is a sophisticated, full-stack Machine Learning application built entirely from scratch. "
+        "TrueSentiment is a sophisticated, full-stack Machine Learning application built entirely from scratch. "
         "It bridges the gap between raw web data extraction and complex Natural Language Processing, acting as a complete pipeline "
         "from data harvesting to model training and web deployment. Instead of relying on pre-trained black-box APIs, "
         "this project fetches, labels, feature-engineers, and trains its own Machine Learning models (Logistic Regression & SVM) "
@@ -89,7 +89,7 @@ def create_report():
         "solutions rely on opaque, pre-trained APIs that limit customization and understanding of the underlying mechanics. "
     )
     doc.add_paragraph(
-        "The TrueSentinel project was motivated by the need to develop a transparent, customizable, and robust end-to-end machine learning pipeline. "
+        "The TrueSentiment project was motivated by the need to develop a transparent, customizable, and robust end-to-end machine learning pipeline. "
         "The primary objective is to build a full-stack application that not only performs accurate sentiment analysis but also handles "
         "the entire data lifecycle—from live extraction via the YouTube Data API to data preprocessing, custom model training, "
         "and real-time inference deployment through a modern web interface."
@@ -98,7 +98,7 @@ def create_report():
     # --- 2. System Architecture ---
     doc.add_heading('2. System Architecture', level=1)
     doc.add_paragraph(
-        "The system architecture of TrueSentinel is divided into four main components, ensuring a clean separation of concerns. "
+        "The system architecture of TrueSentiment is divided into four main components, ensuring a clean separation of concerns. "
         "The following diagram illustrates the flow of data from extraction to the user interface:"
     )
     
@@ -108,7 +108,7 @@ def create_report():
         doc.add_picture(arch_img_path, width=Inches(6.0))
         img_p = doc.paragraphs[-1]
         img_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        cap = doc.add_paragraph('Figure 1: High-level System Architecture of TrueSentinel')
+        cap = doc.add_paragraph('Figure 1: High-level System Architecture of TrueSentiment')
         cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
         cap.runs[0].italic = True
 
@@ -137,7 +137,7 @@ def create_report():
 
     doc.add_heading('3.2 Data Preprocessing & Lexical Labeling', level=2)
     doc.add_paragraph(
-        "A major challenge in supervised learning for sentiment analysis is the acquisition of labeled data. TrueSentinel overcomes this "
+        "A major challenge in supervised learning for sentiment analysis is the acquisition of labeled data. TrueSentiment overcomes this "
         "by utilizing a smart, robust NLP lexical ruleset. This ruleset automatically establishes ground-truth labels by evaluating "
         "the sentiment polarity of the text. Crucially, it includes advanced linguistic processing, such as catching double-negatives "
         "(e.g., 'not bad'), which are often misinterpreted by basic lexical analyzers."
@@ -241,7 +241,7 @@ def create_report():
         doc.add_picture(dash_img_path, width=Inches(6.0))
         img_p2 = doc.paragraphs[-1]
         img_p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        cap3 = doc.add_paragraph('Figure 2: TrueSentinel Glassmorphism Web Dashboard showing Sentiment Analysis Results.')
+        cap3 = doc.add_paragraph('Figure 2: TrueSentiment Glassmorphism Web Dashboard showing Sentiment Analysis Results.')
         cap3.alignment = WD_ALIGN_PARAGRAPH.CENTER
         cap3.runs[0].italic = True
 
@@ -249,7 +249,7 @@ def create_report():
     doc.add_page_break()
     doc.add_heading('7. Conclusion & Future Work', level=1)
     doc.add_paragraph(
-        "The TrueSentinel project successfully demonstrates the viability of building a custom, end-to-end machine learning pipeline for real-time "
+        "The TrueSentiment project successfully demonstrates the viability of building a custom, end-to-end machine learning pipeline for real-time "
         "sentiment analysis. By controlling every stage—from live data harvesting and smart lexicon labeling to TF-IDF feature engineering and SVM/Logistic "
         "Regression training—the system achieves a high degree of transparency, customizability, and performance."
     )
@@ -270,8 +270,8 @@ def create_report():
     for ref in refs:
         doc.add_paragraph(ref)
 
-    doc.save('../TrueSentinel_Project_Report_V2.docx')
-    print("Report generated successfully at ../TrueSentinel_Project_Report_V2.docx")
+    doc.save('../TrueSentiment_Project_Report_V2.docx')
+    print("Report generated successfully at ../TrueSentiment_Project_Report_V2.docx")
 
 if __name__ == '__main__':
     create_report()

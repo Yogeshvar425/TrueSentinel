@@ -3,7 +3,7 @@
 You are tasked with writing a comprehensive academic project report for a professor based on the following project context. Please generate a detailed, structured, and professional report suitable for a university-level submission.
 
 ## Project Details
-**Project Title:** TrueSentinel: Full-Stack Machine Learning Pipeline
+**Project Title:** TrueSentiment: Full-Stack Machine Learning Pipeline
 **Project Objective:** A full-stack application that acts as a complete pipeline from Data Harvesting to Model Training and Web Deployment for YouTube sentiment analysis.
 
 ## Core Features
@@ -27,7 +27,7 @@ You are tasked with writing a comprehensive academic project report for a profes
 ## Required Report Structure
 Please ensure the generated report includes the following sections:
 1. **Abstract:** High-level summary of the problem, methodology, and outcome.
-2. **Introduction:** Context, motivation, and objectives of the TrueSentinel project.
+2. **Introduction:** Context, motivation, and objectives of the TrueSentiment project.
 3. **System Architecture:** Detailed explanation of the full-stack architecture (Frontend, Backend, Data Engineering, ML Pipeline).
 4. **Methodology:** 
    - Data Collection Strategy (YouTube API)

@@ -1,52 +1,52 @@
 {
-  "trained_at": "2026-06-16T20:14:53.397899",
+  "trained_at": "2026-06-16T20:38:02.256280",
   "dataset": {
     "total_raw_comments": 499,
     "spam_filtered": 7,
     "labeled_samples": 164,
     "positive_samples": 91,
     "negative_samples": 73,
-    "feature_dimensions": 1718,
+    "feature_dimensions": 1683,
     "source_videos": 6
   },
   "logistic_regression": {
     "accuracy": 75.76,
-    "precision": 75.0,
-    "recall": 83.33,
-    "f1_score": 78.95,
+    "precision": 72.73,
+    "recall": 88.89,
+    "f1_score": 80.0,
     "confusion_matrix": [
       [
-        10,
-        5
+        9,
+        6
       ],
       [
-        3,
-        15
+        2,
+        16
       ]
     ],
     "cv_accuracy": 64.66,
-    "cv_accuracy_std": 10.35,
-    "cv_f1": 70.54,
-    "cv_f1_std": 8.25
+    "cv_accuracy_std": 8.6,
+    "cv_f1": 70.2,
+    "cv_f1_std": 6.77
   },
   "svm": {
     "accuracy": 75.76,
-    "precision": 75.0,
-    "recall": 83.33,
-    "f1_score": 78.95,
+    "precision": 72.73,
+    "recall": 88.89,
+    "f1_score": 80.0,
     "confusion_matrix": [
       [
-        10,
-        5
+        9,
+        6
       ],
       [
-        3,
-        15
+        2,
+        16
       ]
     ],
     "cv_accuracy": 65.87,
-    "cv_accuracy_std": 9.59,
-    "cv_f1": 71.79,
-    "cv_f1_std": 7.68
+    "cv_accuracy_std": 9.0,
+    "cv_f1": 71.44,
+    "cv_f1_std": 7.45
   }
 }

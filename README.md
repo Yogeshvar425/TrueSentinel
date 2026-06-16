@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">
-    <img src="docs/icons/shield.svg" width="40" height="40" align="center"> TrueSentinel
+    <img src="docs/icons/sentiment.svg" width="40" height="40" align="center"> TrueSentiment
   </h1>
   <p align="center">
     <strong>Full-stack ML pipeline for real-time YouTube comment sentiment analysis</strong>
@@ -15,7 +15,7 @@
 
 ---
 
-TrueSentinel is not a wrapper around a pre-trained API. It's a **complete, from-scratch ML pipeline** that harvests live YouTube comments, preprocesses and labels them via NLP lexicon rules, trains both **Logistic Regression** and **SVM** classifiers with stratified cross-validation, and deploys them behind a **FastAPI** server with a glassmorphism dashboard — all without a single external ML service.
+TrueSentiment is not a wrapper around a pre-trained API. It's a **complete, from-scratch ML pipeline** that harvests live YouTube comments, preprocesses and labels them via NLP lexicon rules, trains both **Logistic Regression** and **SVM** classifiers with stratified cross-validation, and deploys them behind a **FastAPI** server with a glassmorphism dashboard — all without a single external ML service.
 
 ## <img src="docs/icons/metrics.svg" width="22" height="22" align="center"> Impact Metrics
 
@@ -66,8 +66,8 @@ graph LR
 
 ```bash
 # Clone the repository
-git clone https://github.com/Yogeshvar425/TrueSentinel.git
-cd TrueSentinel
+git clone https://github.com/Yogeshvar425/TrueSentiment.git
+cd TrueSentiment
 
 # Install dependencies
 pip install -r requirements.txt
@@ -105,7 +105,7 @@ Navigate to **http://localhost:8000** — paste any YouTube URL and watch the pi
 Comments are fetched live from the YouTube Data API v3 (100 per video). The training set is intentionally diverse — viral videos, controversial content, music, and historic uploads.
 
 ### Labeling Strategy
-Since supervised learning requires labels, TrueSentinel uses a **lexicon-based labeling** approach with 50+ sentiment keywords. It handles edge cases like:
+Since supervised learning requires labels, TrueSentiment uses a **lexicon-based labeling** approach with 50+ sentiment keywords. It handles edge cases like:
 - **Double negatives**: "not bad" → positive (not misclassified as negative)
 - **Slang/informal**: "10/10", "cringe", "masterpiece"
 - **Ambiguous comments**: Skipped (only strictly polar comments are labeled)
@@ -122,7 +122,7 @@ Both models are evaluated with:
 ## <img src="docs/icons/structure.svg" width="22" height="22" align="center"> Project Structure
 
 ```
-TrueSentinel/
+TrueSentiment/
 ├── server.py              # FastAPI backend + API routes
 ├── train.py               # ML training pipeline
 ├── main.py                # CLI analysis tool
