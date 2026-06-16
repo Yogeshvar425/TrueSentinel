@@ -1,15 +1,6 @@
 <p align="center">
   <h1 align="center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 10px;">
-      <defs>
-        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00f2fe" />
-          <stop offset="100%" stop-color="#4facfe" />
-        </linearGradient>
-      </defs>
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="url(#shieldGrad)" />
-      <path d="M12 18s5-2.5 5-6.25V7.25l-5-1.88-5 1.88v4.5C7 15.5 12 18 12 18z" fill="#0f172a" opacity="0.3"/>
-    </svg>TrueSentinel
+    <img src="docs/icons/shield.svg" width="40" height="40" align="center"> TrueSentinel
   </h1>
   <p align="center">
     <strong>Full-stack ML pipeline for real-time YouTube comment sentiment analysis</strong>
@@ -26,7 +17,7 @@
 
 TrueSentinel is not a wrapper around a pre-trained API. It's a **complete, from-scratch ML pipeline** that harvests live YouTube comments, preprocesses and labels them via NLP lexicon rules, trains both **Logistic Regression** and **SVM** classifiers with stratified cross-validation, and deploys them behind a **FastAPI** server with a glassmorphism dashboard — all without a single external ML service.
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Impact Metrics
+## <img src="docs/icons/metrics.svg" width="22" height="22" align="center"> Impact Metrics
 
 | Metric | Value |
 |---|---|
@@ -38,7 +29,7 @@ TrueSentinel is not a wrapper around a pre-trained API. It's a **complete, from-
 
 > **Why this matters**: Every metric is computed from real evaluation — no hardcoded numbers. The training pipeline generates `models/metrics.json` with accuracy, precision, recall, F1 scores, and confusion matrices for both models using held-out test sets and 5-fold cross-validation.
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/><path d="M7 12v4M17 8v4M10 8h4"/></svg> Architecture
+## <img src="docs/icons/architecture.svg" width="22" height="22" align="center"> Architecture
 
 ```mermaid
 graph LR
@@ -53,7 +44,7 @@ graph LR
     I --> J[Glassmorphism Dashboard<br/>Donut Chart + Comment Feed]
 ```
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><path d="M6 19L2 22l3-4M21 3a22.3 22.3 0 0 0-11.2 5.8 20.8 20.8 0 0 0-4.1 7.2M21 3a22.3 22.3 0 0 1-5.8 11.2 20.8 20.8 0 0 1-7.2 4.1M21 3L11 13M13 5L8.5 9.5M19 11l-4.5-4.5"/></svg> Features
+## <img src="docs/icons/features.svg" width="22" height="22" align="center"> Features
 
 - **From-Scratch ML Pipeline** — No pre-trained APIs. Raw comments → lexicon labels → TF-IDF features → trained classifiers.
 - **Dual Model Training** — Logistic Regression + SVM with `class_weight='balanced'` for robust performance on skewed data.
@@ -65,7 +56,7 @@ graph LR
 - **Real-Time Dashboard** — Pure JS donut chart, animated counters, progress steps, comment filtering, toast notifications.
 - **Zero Frontend Dependencies** — Canvas-rendered charts, custom animations, no Chart.js or D3.
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Quick Start
+## <img src="docs/icons/quickstart.svg" width="22" height="22" align="center"> Quick Start
 
 ### Prerequisites
 - Python 3.9+
@@ -108,7 +99,7 @@ python server.py
 
 Navigate to **http://localhost:8000** — paste any YouTube URL and watch the pipeline analyze sentiment in real-time.
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2zM14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2z"/></svg> How It Works
+## <img src="docs/icons/howitworks.svg" width="22" height="22" align="center"> How It Works
 
 ### Data Collection
 Comments are fetched live from the YouTube Data API v3 (100 per video). The training set is intentionally diverse — viral videos, controversial content, music, and historic uploads.
@@ -128,7 +119,7 @@ Both models are evaluated with:
 - **5-Fold Stratified Cross-Validation** to estimate generalization performance
 - Results saved to `models/metrics.json` — what the dashboard displays
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Project Structure
+## <img src="docs/icons/structure.svg" width="22" height="22" align="center"> Project Structure
 
 ```
 TrueSentinel/
@@ -151,7 +142,7 @@ TrueSentinel/
 └── LICENSE
 ```
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg> Tech Stack
+## <img src="docs/icons/techstack.svg" width="22" height="22" align="center"> Tech Stack
 
 | Layer | Technology | Purpose |
 |---|---|---|
@@ -161,7 +152,7 @@ TrueSentinel/
 | Frontend | Vanilla JS + CSS3 | Canvas donut chart, animations, glassmorphism UI |
 | Deployment | Python stdlib | No Docker required (optional) |
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> API Endpoints
+## <img src="docs/icons/api.svg" width="22" height="22" align="center"> API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -182,7 +173,7 @@ TrueSentinel/
 - `cumulative_stats` — Total analyses run, comments processed, spam blocked
 - `inference_time_ms` — End-to-end processing time in milliseconds
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Known Limitations & Future Work
+## <img src="docs/icons/limitations.svg" width="22" height="22" align="center"> Known Limitations & Future Work
 
 This project intentionally uses classical ML (not pre-trained transformers) to demonstrate building a pipeline from scratch. That comes with trade-offs:
 
@@ -202,7 +193,7 @@ This project intentionally uses classical ML (not pre-trained transformers) to d
 3. **Active learning loop** — Let users flag misclassifications in the dashboard, retrain on corrected labels
 4. **Confidence calibration** — Apply Platt scaling so the displayed confidence percentages are actually meaningful
 
-## <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> License
+## <img src="docs/icons/license.svg" width="22" height="22" align="center"> License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
